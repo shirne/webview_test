@@ -58,7 +58,8 @@ class _WebViewPageState extends State<WebViewPage> {
     }
     controller!.platform.setOnPlatformPermissionRequest((request) async {
       bool granted = true;
-      logger.info('request permission for ${request.types} ');
+      logger
+          .info('request permission for ${request.types.map((e) => e.name)} ');
       if (request.types.contains(WebViewPermissionResourceType.camera)) {
         if (!await Permission.camera.status.isGranted) {
           await Permission.camera.request();

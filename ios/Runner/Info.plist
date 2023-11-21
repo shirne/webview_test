@@ -2,6 +2,8 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>CADisableMinimumFrameDurationOnPhone</key>
+	<true/>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>$(DEVELOPMENT_LANGUAGE)</string>
 	<key>CFBundleDisplayName</key>
@@ -20,10 +22,72 @@
 	<string>$(FLUTTER_BUILD_NAME)</string>
 	<key>CFBundleSignature</key>
 	<string>????</string>
+	<key>CFBundleURLTypes</key>
+	<array>
+		<dict>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+			<key>CFBundleURLName</key>
+			<string>wechatwx1147a86b100c0bdf</string>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>wx1147a86b100c0bdf</string>
+			</array>
+		</dict>
+		<dict>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+			<key>CFBundleURLName</key>
+			<string>alipay</string>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>alipay2021003112615854</string>
+			</array>
+		</dict>
+	</array>
 	<key>CFBundleVersion</key>
 	<string>$(FLUTTER_BUILD_NUMBER)</string>
+	<key>LSApplicationQueriesSchemes</key>
+	<array>
+		<string>baidumap</string>
+		<string>https</string>
+		<string>http</string>
+		<string>tel</string>
+		<string>sms</string>
+		<string>weixin</string>
+		<string>weixinULAPI</string>
+		<string>alipay</string>
+		<string>amap</string>
+		<string>qqmap</string>
+		<string>itms-apps</string>
+	</array>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
+	<key>NSAppTransportSecurity</key>
+	<dict>
+		<key>NSAllowsArbitraryLoads</key>
+		<true/>
+	</dict>
+	<key>NSCameraUsageDescription</key>
+	<string>会买车需要您同意使用相机，不允许将无法使用相机修改用户头像信息</string>
+	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
+	<string>开启定位服务可以获取附近门店，未经允许将不会获取定位，请放心使用</string>
+	<key>NSLocationAlwaysUsageDescription</key>
+	<string>开启定位服务可以获取附近门店，未经允许将不会获取定位，请放心使用</string>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>开启定位服务可以获取附近门店，未经允许将不会获取定位，请放心使用</string>
+	<key>NSMicrophoneUsageDescription</key>
+	<string>会买车需要您同意使用麦克风进行语音录制，不允许将无法使用麦克风进行语音录制</string>
+	<key>NSPhotoLibraryAddUsageDescription</key>
+	<string>会买车需要您同意访问相册，如果不允许将无法保存图片</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>会买车需要您同意访问相册，如果不允许将修改用户头像信息</string>
+	<key>UIApplicationSupportsIndirectInputEvents</key>
+	<true/>
+	<key>UIBackgroundModes</key>
+	<array>
+		<string>location</string>
+	</array>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
 	<key>UIMainStoryboardFile</key>
@@ -41,9 +105,11 @@
 		<string>UIInterfaceOrientationLandscapeLeft</string>
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
-	<key>CADisableMinimumFrameDurationOnPhone</key>
+	<key>UIViewControllerBasedStatusBarAppearance</key>
 	<true/>
-	<key>UIApplicationSupportsIndirectInputEvents</key>
-	<true/>
+	<key>User Interface Style</key>
+	<string>Light</string>
+	<key>io.flutter.embedded_views_preview</key>
+	<string>YES</string>
 </dict>
 </plist>
