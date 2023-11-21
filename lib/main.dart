@@ -77,7 +77,22 @@ class _MyHomePageState extends State<MyHomePage> {
                 ));
               },
               child: Text('google meet'),
-            )
+            ),
+            ElevatedButton(
+              onPressed: () {
+                Navigator.of(context).push(MaterialPageRoute(
+                  builder: (context) {
+                    return WebViewPage(
+                      {
+                        'url':
+                            'https://webrtc.github.io/samples/src/content/getusermedia/gum/',
+                      },
+                    );
+                  },
+                ));
+              },
+              child: Text('camera test'),
+            ),
           ],
         ),
       ),
