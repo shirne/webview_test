@@ -75,7 +75,7 @@ class _MyHomePageState extends State<MyHomePage> {
                   },
                 ));
               },
-              child: Text('google meet'),
+              child: const Text('google meet'),
             ),
             ElevatedButton(
               onPressed: () {
@@ -90,7 +90,7 @@ class _MyHomePageState extends State<MyHomePage> {
                   },
                 ));
               },
-              child: Text('camera test'),
+              child: const Text('camera test'),
             ),
           ],
         ),

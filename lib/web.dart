@@ -61,22 +61,32 @@ class _WebViewPageState extends State<WebViewPage> {
       logger
           .info('request permission for ${request.types.map((e) => e.name)} ');
       if (request.types.contains(WebViewPermissionResourceType.camera)) {
-        if (!await Permission.camera.status.isGranted) {
-          await Permission.camera.request();
+        logger.info('request camera permission');
+        if (await Permission.camera.status.isDenied) {
+          final status = await Permission.camera.request();
+          logger.info('request camera permission: $status');
+          granted &= !(status.isDenied || status.isPermanentlyDenied);
+        } else {
+          granted &= !(await Permission.camera.status.isPermanentlyDenied);
         }
-        granted &= await Permission.camera.status.isGranted;
       }
       if (request.types.contains(WebViewPermissionResourceType.microphone)) {
-        if (!await Permission.microphone.status.isGranted) {
-          await Permission.microphone.request();
+        logger.info('request microphone permission');
+        if (await Permission.microphone.status.isDenied) {
+          final status = await Permission.microphone.request();
+          logger.info('request microphone permission: $status');
+          granted &= !(status.isDenied || status.isPermanentlyDenied);
+        } else {
+          granted &= !(await Permission.microphone.status.isPermanentlyDenied);
         }
-        granted &= await Permission.microphone.status.isGranted;
       }
-      if (granted) {
-        request.grant();
-      } else {
-        request.deny();
-      }
+
+      //if (granted) {
+      logger.info('permission granted');
+      await request.grant();
+      // } else {
+      // await request.deny();
+      //}
     });
     controller!
       ..setUserAgent(
