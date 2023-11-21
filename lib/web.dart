@@ -61,32 +61,28 @@ class _WebViewPageState extends State<WebViewPage> {
       logger
           .info('request permission for ${request.types.map((e) => e.name)} ');
       if (request.types.contains(WebViewPermissionResourceType.camera)) {
-        logger.info('request camera permission');
         if (await Permission.camera.status.isDenied) {
           final status = await Permission.camera.request();
-          logger.info('request camera permission: $status');
           granted &= !(status.isDenied || status.isPermanentlyDenied);
         } else {
           granted &= !(await Permission.camera.status.isPermanentlyDenied);
         }
       }
       if (request.types.contains(WebViewPermissionResourceType.microphone)) {
-        logger.info('request microphone permission');
         if (await Permission.microphone.status.isDenied) {
           final status = await Permission.microphone.request();
-          logger.info('request microphone permission: $status');
           granted &= !(status.isDenied || status.isPermanentlyDenied);
         } else {
           granted &= !(await Permission.microphone.status.isPermanentlyDenied);
         }
       }
 
-      //if (granted) {
-      logger.info('permission granted');
-      await request.grant();
-      // } else {
-      // await request.deny();
-      //}
+      if (granted) {
+        logger.info('permission granted');
+        await request.grant();
+      } else {
+        await request.deny();
+      }
     });
     controller!
       ..setUserAgent(
