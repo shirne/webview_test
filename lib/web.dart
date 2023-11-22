@@ -8,8 +8,6 @@ import 'package:webview_flutter_wkwebview/webview_flutter_wkwebview.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 
 import 'utils/utils.dart';
-import '../../utils/html.dart' if (library.html) 'dart:ui' as ui;
-import '../../utils/html.dart' if (library.html) 'dart:html' as htmllib;
 
 int webviewId = 0;
 
@@ -38,7 +36,6 @@ class _WebViewPageState extends State<WebViewPage> {
   }
 
   void initController() {
-    if (kIsWeb) return;
     late final PlatformWebViewControllerCreationParams params;
     if (WebViewPlatform.instance is WebKitWebViewPlatform) {
       params = WebKitWebViewControllerCreationParams(
@@ -50,7 +47,12 @@ class _WebViewPageState extends State<WebViewPage> {
     }
 
     controller = WebViewController.fromPlatformCreationParams(params);
-// ···
+
+    if (kIsWeb) {
+      controller!.loadRequest(Uri.parse(widget.url));
+      return;
+    }
+
     if (controller!.platform is AndroidWebViewController) {
       AndroidWebViewController.enableDebugging(!kReleaseMode);
       (controller!.platform as AndroidWebViewController)
@@ -118,22 +120,7 @@ class _WebViewPageState extends State<WebViewPage> {
   }
 
   Widget _buildWebview() {
-    if (kIsWeb) {
-      int pid = webviewId++;
-      //ignore: undefined_prefixed_name
-      ui.platformViewRegistry.registerViewFactory('popup-html-$pid',
-          (int viewId) {
-        final iframe = htmllib.IFrameElement();
-        iframe.style
-          ..border = 'none'
-          ..width = '100%'
-          ..height = '100%';
-        iframe.src = widget.url;
-        return iframe;
-      });
-      return HtmlElementView(viewType: 'popup-html-$pid');
-    }
-    if (Platform.isAndroid || Platform.isIOS) {
+    if (kIsWeb || Platform.isAndroid || Platform.isIOS) {
       return WebViewWidget(
         controller: controller!,
       );
