@@ -4,6 +4,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:webview_flutter_android/webview_flutter_android.dart';
+import 'package:webview_flutter_web/webview_flutter_web.dart';
 import 'package:webview_flutter_wkwebview/webview_flutter_wkwebview.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 
@@ -49,7 +50,16 @@ class _WebViewPageState extends State<WebViewPage> {
     controller = WebViewController.fromPlatformCreationParams(params);
 
     if (kIsWeb) {
+      // add `html.IFrameElement get iFrame => _webWebViewParams.iFrame;` to WebWebViewController
       controller!.loadRequest(Uri.parse(widget.url));
+      (controller!.platform as WebWebViewController).iFrame
+        ..allow = "camera *;microphone *;"
+        ..onLoad.listen((event) {
+          logger.info(event);
+        })
+        ..onLoadedMetadata.listen((event) {
+          logger.info(event);
+        });
       return;
     }
 
