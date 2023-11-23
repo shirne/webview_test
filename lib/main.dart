@@ -93,6 +93,36 @@ class _MyHomePageState extends State<MyHomePage> {
               },
               child: const Text('camera test'),
             ),
+            ElevatedButton(
+              onPressed: () {
+                Navigator.of(context).push(MaterialPageRoute(
+                  builder: (context) {
+                    return WebViewPage(
+                      {
+                        'url':
+                            'https://webrtc.github.io/test-pages/src/multiple-video-devices/',
+                      },
+                    );
+                  },
+                ));
+              },
+              child: const Text('webrtc test'),
+            ),
+            ElevatedButton(
+              onPressed: () {
+                Navigator.of(context).push(MaterialPageRoute(
+                  builder: (context) {
+                    return WebViewPage(
+                      {
+                        'url':
+                            'https://webrtc.github.io/samples/src/content/getusermedia/getdisplaymedia/',
+                      },
+                    );
+                  },
+                ));
+              },
+              child: const Text('displaymedia test'),
+            ),
           ],
         ),
       ),
